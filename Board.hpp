@@ -3,7 +3,6 @@
 
 #include <vector>
 #include <SFML/Graphics.hpp>
-#include "Food.hpp"
 
 #define ROW_WIDTH 20
 #define CELL_SIZE 30.f
@@ -14,12 +13,11 @@ class Board {
     public:
         Board();
 
-        Food food;
-
         static Board getInstance();
-        std::vector<std::vector<short>> getBoardLayout() const;
+        std::vector<std::vector<short>> getBoardLayout();
         std::vector<std::vector<short>> generateBoardLayout();
-        void draw(sf::RenderWindow& window) const;
+        std::vector<std::vector<short>> getEmptyBlockCoordinates();
+        void draw(sf::RenderWindow& window);
 };
 
 #endif

@@ -2,11 +2,12 @@
 #define FOOD_HPP
 
 #include <SFML/Graphics.hpp>
+#include <iostream>
 
 class Food {
     public:
         Food();
-        void draw(sf::RenderWindow& window, int x, int y);
+        void draw(sf::RenderWindow& window, std::vector<std::vector<short>> emptyBlockCoordinates);
 };
 
 #endif

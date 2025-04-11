@@ -1,4 +1,5 @@
 #include "Board.hpp"
+#include <iostream>
 
 Board::Board() : boardLayout(generateBoardLayout()) {}
 
@@ -6,7 +7,7 @@ Board Board::getInstance() {
     return Board();
 }
 
-std::vector<std::vector<short>> Board::getBoardLayout() const {
+std::vector<std::vector<short>> Board::getBoardLayout() {
     return boardLayout;
 }
 
@@ -46,7 +47,24 @@ std::vector<std::vector<short>> Board::generateBoardLayout() {
     };
 }
 
-void Board::draw(sf::RenderWindow& window) const {
+std::vector<std::vector<short>> Board::getEmptyBlockCoordinates() {
+    std::vector<std::vector<short>> emptyBlockCoordinates;
+
+    for (int y = 0; y < boardLayout.size(); y++) {
+        for (int x = 0; x < boardLayout[y].size(); x++) {
+            if (boardLayout[y][x] == 2) {
+                std::vector<short> coordinates;
+                coordinates.push_back(x);
+                coordinates.push_back(y);
+                emptyBlockCoordinates.push_back(coordinates);
+            }
+        }
+    }
+
+    return emptyBlockCoordinates;
+}
+
+void Board::draw(sf::RenderWindow& window) {
     sf::RectangleShape wallSegment(sf::Vector2f(CELL_SIZE, CELL_SIZE));
     
     for (int y = 0; y < boardLayout.size(); y++) {
@@ -68,8 +86,6 @@ void Board::draw(sf::RenderWindow& window) const {
                 wallSegment.setFillColor(sf::Color::Blue);
             
                 window.draw(wallSegment);
-            } else if (boardLayout[y][x] == 2) {
-                food.draw(window, x, y);
             }
         }
     }

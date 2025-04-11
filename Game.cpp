@@ -3,7 +3,7 @@
 
 Game::Game() : 
     window(sf::VideoMode(SCREEN_WIDTH, SCREEN_HEIGHT), "Pac Man"),
-    board(Board::getInstance())
+    isRunning(true)
 {
     window.setFramerateLimit(60);
 
@@ -33,6 +33,7 @@ void Game::processEvents() {
 void Game::render() {
     window.clear();
     board.draw(window);
+    food.draw(window, board.getEmptyBlockCoordinates());
     window.display();
 }
 

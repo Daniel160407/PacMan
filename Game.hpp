@@ -4,6 +4,7 @@
 #include <memory>
 #include <SFML/Graphics.hpp>
 #include "Board.hpp"
+#include "Food.hpp"
 
 #define SCREEN_WIDTH 1000
 #define SCREEN_HEIGHT 800
@@ -14,6 +15,8 @@ class Game {
         sf::Font font;
 
         Board board;
+        Food food;
+        
         bool isRunning;
     public:
         Game();
